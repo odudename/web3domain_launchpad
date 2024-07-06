@@ -143,9 +143,11 @@ export default function Manage() {
 
       try {
         const responseObject = JSON.parse(responseText);
-        const cidValue = responseObject.cid;
-        console.log("https://web3domain.org/ipfs/" + cidValue);
-        setClaimUrl("https://web3domain.org/ipfs/" + cidValue);
+        const cidValue = responseObject.link;
+       // console.log("https://web3domain.org/ipfs/" + cidValue);
+      //  setClaimUrl("https://web3domain.org/ipfs/" + cidValue);
+        console.log(cidValue);
+        setClaimUrl(cidValue);
         setIsLoading(false);
       } catch (error) {
         console.log("Error parsing JSON:", error);
@@ -163,10 +165,13 @@ export default function Manage() {
       const response = await generatePreview(jsonDataNew, domain, "true");
       if (response.ok) {
         const responseText = await response.text();
+        console.log(response);
         try {
           const responseObject = JSON.parse(responseText);
-          const cidValue = responseObject.cid;
-          const cidUrl = "https://web3domain.org/ipfs/" + cidValue;
+          console.log(responseObject);
+          const cidValue = responseObject.link;
+         const cidUrl = cidValue;
+      //  const cidUrl = "https://web3domain.org/ipfs/.....";
           console.log(cidUrl);
           setWeb2Url(cidUrl);
 

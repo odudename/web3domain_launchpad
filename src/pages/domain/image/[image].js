@@ -124,8 +124,12 @@ const updatedJsonData = {
     const imageContent = await generateImage(domainName, key, SITE_URL);
     if (imageContent) {
       console.log('Image content:', imageContent);
+      // Parse the JSON string into a JavaScript object
+const parsedContent = JSON.parse(imageContent);
+console.log('Parsed Image URL:', parsedContent.url);
       //https://bafkreiak3kms5q6jn6xjowri3rpwn7agb5zqnenvb4auo3vrwbhedqhbw4.ipfs.nftstorage.link/
-     setNftImage("https://web3domain.org/ipfs/" + imageContent);
+    // setNftImage("https://web3domain.org/ipfs/" + imageContent);
+     setNftImage( parsedContent.url);
      // setNftImage("https://" + imageContent +".ipfs.nftstorage.link");
       //console.log(jsonData);
       setIsLoading(false);
@@ -145,9 +149,11 @@ const updatedJsonData = {
 
       try {
         const responseObject = JSON.parse(responseText);
-        const cidValue = responseObject.cid;
-        console.log('https://web3domain.org/ipfs/' + cidValue);
-        setClaimUrl('https://web3domain.org/ipfs/' + cidValue);
+        const cidValue = responseObject.link;
+      //  console.log('https://web3domain.org/ipfs/' + cidValue);
+       // setClaimUrl('https://web3domain.org/ipfs/' + cidValue);
+       console.log(cidValue);
+       setClaimUrl(cidValue);
         setIsLoading(false);
 
 
