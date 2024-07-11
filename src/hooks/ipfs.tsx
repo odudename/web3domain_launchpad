@@ -7,8 +7,8 @@ export async function generateJson(rawjson: any[], name: string): Promise<object
     const formData = new FormData();
     formData.append('data', JSON.stringify(rawjson)); // Append JSON data
     formData.append('name', name); // Append name string
-
-    const url = `http://localhost/blockchain/web3domain_org/endpoint/v1/json.php`;
+    //const url = `http://localhost/blockchain/web3domain_org/endpoint/v1/json.php`;
+    const url = `https://web3domain.org/endpoint/v1/json.php`;
     const response = await fetch(url, {
       method: 'POST',
       body: formData, // Use the FormData object
@@ -47,8 +47,8 @@ export async function generatePreview(rawjson: any[], name: string,generate: str
     formData.append('name', name); // Append name string
     formData.append('template',"https://web3domain.org/endpoint/template/theme1/index.php");
     formData.append('generate',generate);
-
-    const url = `http://localhost/blockchain/web3domain_org/endpoint/template/start.php`;
+   // const url = `http://localhost/blockchain/web3domain_org/endpoint/template/start.php`;
+    const url = `https://web3domain.org/endpoint/template/start.php`;
     const response = await fetch(url, {
       method: 'POST',
       body: formData, // Use the FormData object
