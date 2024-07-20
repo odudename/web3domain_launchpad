@@ -80,7 +80,7 @@ export default function Info() {
 //console.log(jsonData);
 
  
-let firstImg = jsonData?.image && jsonData.image.startsWith("ipfs://") ? `https://web3domain.org/ipfs/${jsonData.image.replace("ipfs://","")}` : jsonData?.image;
+let firstImg = jsonData?.image && jsonData.image.startsWith("ipfs://") ? `https://web3domain.org/ipfs/${jsonData.image.replace("ipfs://","")}` : jsonData?.image || DOMAIN_IMAGE_URL;
 
 
   const handleSubmit = (event) => {

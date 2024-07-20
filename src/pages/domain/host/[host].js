@@ -60,7 +60,7 @@ import {
 } from "@chakra-ui/react";
 import { FaExternalLinkAlt, FaForward, FaLink } from "react-icons/fa";
 import { useAccount } from "wagmi";
-import { DOMAIN_TLD, NETWORK_ERROR } from "../../../configuration/Config";
+import { DOMAIN_TLD, NETWORK_ERROR, DOMAIN_IMAGE_URL } from "../../../configuration/Config";
 
 export default function Info() {
   const { address } = useAccount();
@@ -200,9 +200,11 @@ export default function Info() {
 
       try {
         const responseObject = JSON.parse(responseText);
-        const cidValue = responseObject.cid;
-        console.log("https://ipfs.io/ipfs/" + cidValue);
-        setClaimUrl("https://ipfs.io/ipfs/" + cidValue);
+        const cidValue = responseObject.link;
+      //  console.log("https://ipfs.io/ipfs/" + cidValue);
+      //  setClaimUrl("https://ipfs.io/ipfs/" + cidValue);
+        console.log(cidValue);
+        setClaimUrl(cidValue);
         setIsLoading(false);
       } catch (error) {
         console.log("Error parsing JSON:", error);
@@ -322,7 +324,7 @@ export default function Info() {
         setVisitUrl(web2Url);
       }
     }
-    console.log(visitUrl);
+    //console.log(visitUrl);
   }, [visitUrl, web3Url, web2Url, validateURL]);
 
   return (
@@ -404,7 +406,7 @@ export default function Info() {
                                                 "ipfs://",
                                                 "https://ipfs.io/ipfs/"
                                               )
-                                            : jsonData?.image
+                                            : jsonData?.image || DOMAIN_IMAGE_URL
                                         }
                                         alt={jsonData?.name}
                                       />
