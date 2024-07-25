@@ -21,6 +21,7 @@ export const NETWORK_ERROR = "Unsupported Blockchain Network or Domain Name !" /
 
 //Domain Information. It only supports single domain name. 
 export const DOMAIN_TLD = 'dude' //primary domain name without dot (.)
+export const DOMAIN_TLDS = ['dude', 'usdc', 'yak']; // Array of TLDs
 export const DOMAIN_IMAGE_URL = 'https://web3domain.org/endpoint/nft/dude.jpg' //Image path starts with ipfs:// or https://
 export const DOMAIN_NETWORK_CHAIN = 137 //137 for polygon, 314 for filecoin, 80001 for mumbai, 11155111 for sepolia
 export const DOMAIN_DESCRIPTION = '.dude MEME Name service by ODude.com'

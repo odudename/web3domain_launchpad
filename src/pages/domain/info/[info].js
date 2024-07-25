@@ -31,7 +31,7 @@ import {
 } from "@chakra-ui/react";
 import { FaCopy, FaExternalLinkAlt } from "react-icons/fa";
 import { useAccount } from "wagmi";
-import { DOMAIN_TLD, DOMAIN_DESCRIPTION, DOMAIN_IMAGE_URL } from "../../../configuration/Config";
+import { DOMAIN_TLD, DOMAIN_DESCRIPTION, DOMAIN_IMAGE_URL, DOMAIN_TLDS } from "../../../configuration/Config";
 import {
   Modal,
   ModalOverlay,
@@ -56,6 +56,11 @@ export default function Info() {
   const [isOpen, setIsOpen] = useState(false);
   const onClose = () => setIsOpen(false);
   const onOpen = () => setIsOpen(true);
+
+  const isDomainMatched = (domain) => {
+    // Check if the domain is an exact match or ends with any of the TLDs
+    return DOMAIN_TLDS.some(tld => domain === tld || domain.endsWith(`.${tld}`));
+  };
 
   //copy /@username
   const primaryDomain = window.location.origin;
@@ -287,8 +292,7 @@ export default function Info() {
                           </CardBody>
 
                           <CardFooter>
-                            {address == ownerAddress &&
-                            info.endsWith("." + DOMAIN_TLD) ? (
+                            {address == ownerAddress && isDomainMatched(info) ? (
                               <Stack direction="row" spacing="1">
                                 <Button
                                   size="sm"

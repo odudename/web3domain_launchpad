@@ -72,6 +72,7 @@ import {
   DOMAIN_TLD,
   DOMAIN_DESCRIPTION,
   NETWORK_ERROR,
+  DOMAIN_TLDS
 } from "../../../configuration/Config";
 
 export default function Manage() {
@@ -122,6 +123,11 @@ export default function Manage() {
     } else {
       return false;
     }
+  };
+
+  const isDomainMatched = (domain) => {
+    // Check if the domain is an exact match or ends with any of the TLDs
+    return DOMAIN_TLDS.some(tld => domain === tld || domain.endsWith(`.${tld}`));
   };
 
   const handleUpload = async () => {
@@ -410,7 +416,7 @@ export default function Manage() {
           bgSize={"lg"}
           maxH={"80vh"}
         >
-          {isNetworkValid && domain.endsWith("." + DOMAIN_TLD) ? (
+          {isNetworkValid && isDomainMatched(domain) ? (
             <Stack
               as={Box}
               textAlign={"center"}

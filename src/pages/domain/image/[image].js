@@ -52,7 +52,7 @@ import {
 } from '@chakra-ui/react'
 import { FaCopy, FaExternalLinkAlt, FaForward } from "react-icons/fa";
 import { useAccount, useNetwork } from "wagmi";
-import { DOMAIN_TLD, NETWORK_ERROR, DOMAIN_IMAGE_URL, SITE_URL } from '../../../configuration/Config'
+import { DOMAIN_TLD, NETWORK_ERROR, DOMAIN_IMAGE_URL, SITE_URL, DOMAIN_TLDS } from '../../../configuration/Config'
 
 
 export default function Info() {
@@ -79,6 +79,10 @@ export default function Info() {
   //let firstImg = jsonData?.image && jsonData.image.startsWith("ipfs://") ? `https://${jsonData.image.replace("ipfs://","")}.ipfs.nftstorage.link/` : jsonData?.image;
 //console.log(jsonData);
 
+const isDomainMatched = (domain) => {
+  // Check if the domain is an exact match or ends with any of the TLDs
+  return DOMAIN_TLDS.some(tld => domain === tld || domain.endsWith(`.${tld}`));
+};
  
 let firstImg = jsonData?.image && jsonData.image.startsWith("ipfs://") ? `https://web3domain.org/ipfs/${jsonData.image.replace("ipfs://","")}` : jsonData?.image || DOMAIN_IMAGE_URL;
 
@@ -235,7 +239,7 @@ console.log('Parsed Image URL:', parsedContent.url);
             bgSize={"lg"}
             maxH={"80vh"}
           >
-            {isNetworkValid && domain.endsWith('.' + DOMAIN_TLD) ? (
+            {isNetworkValid && isDomainMatched(domain) ? (
               <Stack
                 as={Box}
                 textAlign={"center"}

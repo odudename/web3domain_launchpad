@@ -40,7 +40,7 @@ import {
   Divider
 } from '@chakra-ui/react'
 import { useAccount } from "wagmi";
-import { NETWORK_ERROR,DOMAIN_TYPE,DOMAIN_TLD } from '../../../configuration/Config'
+import { NETWORK_ERROR,DOMAIN_TYPE,DOMAIN_TLD,DOMAIN_TLDS} from '../../../configuration/Config'
 
 
 export default function Info() {
@@ -77,6 +77,11 @@ export default function Info() {
     hash: data?.hash,
   })
   const toast = useToast();
+
+  const isDomainMatched = (domain) => {
+    // Check if the domain is an exact match or ends with any of the TLDs
+    return DOMAIN_TLDS.some(tld => domain === tld || domain.endsWith(`.${tld}`));
+  };
 
 
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
@@ -181,7 +186,7 @@ export default function Info() {
         bgSize={"lg"}
         maxH={"80vh"}
       >
-        {isNetworkValid && domain.endsWith('.'+DOMAIN_TLD) ? (
+        {isNetworkValid && isDomainMatched(domain) ? (
           
             <Stack
               as={Box}

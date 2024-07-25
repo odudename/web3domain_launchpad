@@ -16,7 +16,7 @@ import { NextSeo } from "next-seo";
 import Link from "next/link";
 import { useNetworkValidation } from "../hooks/useNetworkValidation";
 var w3d = require("@odude/odudename");
-import { DOMAIN_TLD } from "../configuration/Config";
+import { DOMAIN_TLD,DOMAIN_TLDS } from "../configuration/Config";
 import Notice from "../components/domain/notice";
 
 type DomainTuple = [string, string];
@@ -28,6 +28,7 @@ export default function DomainList() {
   const [error, setError] = useState(""); // Specify the type for error state
   const [isLoading, setIsLoading] = useState(true);
   const domain_tld = "." + DOMAIN_TLD;
+  const domainTlds = DOMAIN_TLDS.map(tld => "." + tld); // Array of TLDs with dot
   const isNetworkValid = useNetworkValidation();
 
   const setMembershipStatus = (key: string, status: string) => {
@@ -62,7 +63,8 @@ export default function DomainList() {
           .then((data: DomainTuple[]) => {
             // Filter records that end with the specified domain_tld
             const filteredDomainAddr = data.filter((item) =>
-              item[1].endsWith(domain_tld)
+              domainTlds.some(tld => item[1].endsWith(tld)) ||
+            DOMAIN_TLDS.includes(item[1])
             );
             setDomainAddr(filteredDomainAddr);
           })

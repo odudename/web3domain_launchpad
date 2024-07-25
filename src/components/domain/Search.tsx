@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Input, Box, TableContainer, Table, Tbody, Tr, Td, Divider } from '@chakra-ui/react';
 import { CheckDomain } from '../CheckDomain';
-import { DOMAIN_TLD, DOMAIN_PLACEHOLDER } from '../../configuration/Config'
+import { DOMAIN_TLD, DOMAIN_PLACEHOLDER, DOMAIN_TLDS } from '../../configuration/Config'
 import { useDomainValidation } from '../../hooks/validate';
 import useGlobal from '../../hooks/global';
 const Search = () => {
@@ -17,25 +17,21 @@ const Search = () => {
   };
 
 
-  const process_domain = (param: string) =>
-  {
-    let processedParam = param.toLowerCase();
-
-    if (!processedParam.endsWith(DOMAIN_TLD)) {
-      processedParam = param +'.'+ DOMAIN_TLD;
-    }
-    return processedParam;
+  const process_domains = (param: string) => {
+    let processedParams = DOMAIN_TLDS.map(tld => {
+      let processedParam = param.toLowerCase();
+      if (!processedParam.endsWith(`.${tld}`)) {
+        processedParam = `${param}.${tld}`;
+      }
+      return processedParam;
+    });
+    return processedParams;
   }
-
+  
   
   const fetchData = (param: string) => {
 
-    //console.log(param + " ...... " + value);
 
-    // Convert param to lowercase
-   // let newParam = process_domain(param);
-
-  //console.log("New parameter: "+newParam);
 
     setValue(param);
 
@@ -53,8 +49,9 @@ const Search = () => {
 
     if (isValidDomain) {
      // console.log("*");
-      setValue2(process_domain(param));
-      setValue3(process_domain('my' + param));
+     const processedParams = process_domains(param);
+    setValue2(processedParams.join(', ')); // Join the processedParams for display (optional)
+ 
       setShowBox(true); // Show Box when value is updated after 5 seconds of inactivity
 
     }
@@ -92,21 +89,17 @@ const Search = () => {
                   <Box position='relative' padding='2'>
 
                     <TableContainer>
-                      <Table size='lg'>
+                      <Table size='md'>
 
-                        <Tbody>
-                          <Tr>
-                            <Td>{value2}</Td>
-                            <Td>-</Td>
-                            <Td><CheckDomain domain={value2} /></Td>
-                          </Tr>
-                          <Tr>
-                            <Td>{value3}</Td>
-                            <Td>-</Td>
-                            <Td><CheckDomain domain={value3} /></Td>
-                          </Tr>
-
-                        </Tbody>
+                      <Tbody>
+              {process_domains(value).map((processedValue, index) => (
+                <Tr key={index}>
+                  <Td>{processedValue}</Td>
+                  <Td>-</Td>
+                  <Td><CheckDomain domain={processedValue} /></Td>
+                </Tr>
+              ))}
+            </Tbody>
 
                       </Table>
                     </TableContainer>

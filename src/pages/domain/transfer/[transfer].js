@@ -45,6 +45,7 @@ import {
   NETWORK_ERROR,
   DOMAIN_TYPE,
   DOMAIN_TLD,
+  DOMAIN_TLDS
 } from "../../../configuration/Config";
 import HomeButton from "../../../components/HomeButton"; // Home Button
 
@@ -73,6 +74,12 @@ export default function Info() {
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
   const [showErrorAlert, setShowErrorAlert] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+
+
+  const isDomainMatched = (domain) => {
+    // Check if the domain is an exact match or ends with any of the TLDs
+    return DOMAIN_TLDS.some(tld => domain === tld || domain.endsWith(`.${tld}`));
+  };
 
   const {
     config,
@@ -192,7 +199,7 @@ export default function Info() {
           bgSize={"lg"}
           maxH={"80vh"}
         >
-          {isNetworkValid && domain.endsWith("." + DOMAIN_TLD) ? (
+          {isNetworkValid && isDomainMatched(domain) ? (
             <Stack
               as={Box}
               textAlign={"center"}

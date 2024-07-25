@@ -60,7 +60,7 @@ import {
 } from "@chakra-ui/react";
 import { FaExternalLinkAlt, FaForward, FaLink } from "react-icons/fa";
 import { useAccount } from "wagmi";
-import { DOMAIN_TLD, NETWORK_ERROR, DOMAIN_IMAGE_URL } from "../../../configuration/Config";
+import { DOMAIN_TLD, NETWORK_ERROR, DOMAIN_IMAGE_URL, DOMAIN_TLDS } from "../../../configuration/Config";
 
 export default function Info() {
   const { address } = useAccount();
@@ -96,6 +96,11 @@ export default function Info() {
 
   const onClose = () => setIsOpen(false);
   const onOpen = () => setIsOpen(true);
+
+  const isDomainMatched = (domain) => {
+    // Check if the domain is an exact match or ends with any of the TLDs
+    return DOMAIN_TLDS.some(tld => domain === tld || domain.endsWith(`.${tld}`));
+  };
 
   const handleSubmit = (event) => {
     if (event) {
@@ -356,7 +361,7 @@ export default function Info() {
             bgSize={"lg"}
             maxH={"80vh"}
           >
-            {isNetworkValid && domain.endsWith("." + DOMAIN_TLD) ? (
+            {isNetworkValid && isDomainMatched(domain) ? (
               <Stack
                 as={Box}
                 textAlign={"center"}
