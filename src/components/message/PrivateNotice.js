@@ -143,7 +143,7 @@ export default function PrivateNotice() {
 
   return (
     <div>
-      <Button onClick={onOpen}>{NOTICE_TITLE}</Button>
+      <Button onClick={onOpen}>X</Button>
 
       <Modal isOpen={isOpen} onClose={closeModal}>
         <ModalOverlay />
