@@ -31,7 +31,7 @@ import {
   Textarea,
 } from "@chakra-ui/react";
 
-import { DeleteIcon } from '@chakra-ui/icons'
+import { DeleteIcon, ChatIcon , AddIcon} from '@chakra-ui/icons'
 
 import jData from "./PrivateNotice.json";
 
@@ -143,14 +143,14 @@ export default function PrivateNotice() {
 
   return (
     <div>
-      <Button onClick={onOpen}>X</Button>
+      <Button onClick={onOpen}><ChatIcon/></Button>
 
       <Modal isOpen={isOpen} onClose={closeModal}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>
             {NOTICE_TITLE} &nbsp;
-            {(!modify && status == "ADMIN") && isConnected ? <Button onClick={() => edit()}>Edit</Button> : null}
+            {(!modify && status == "ADMIN") && isConnected ? <Button onClick={() => edit()}><AddIcon/></Button> : null}
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody>

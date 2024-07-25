@@ -16,7 +16,7 @@ import { NextSeo } from "next-seo";
 import Link from "next/link";
 import { useNetworkValidation } from "../hooks/useNetworkValidation";
 var w3d = require("@odude/odudename");
-import { DOMAIN_TLD,DOMAIN_TLDS } from "../configuration/Config";
+import { DOMAIN_TLDS } from "../configuration/Config";
 import Notice from "../components/domain/notice";
 
 type DomainTuple = [string, string];
@@ -27,7 +27,6 @@ export default function DomainList() {
   const [domainAddr, setDomainAddr] = useState<DomainTuple[]>([]);
   const [error, setError] = useState(""); // Specify the type for error state
   const [isLoading, setIsLoading] = useState(true);
-  const domain_tld = "." + DOMAIN_TLD;
   const domainTlds = DOMAIN_TLDS.map(tld => "." + tld); // Array of TLDs with dot
   const isNetworkValid = useNetworkValidation();
 

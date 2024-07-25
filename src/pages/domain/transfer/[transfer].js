@@ -43,8 +43,6 @@ import {
 import { useAccount } from "wagmi";
 import {
   NETWORK_ERROR,
-  DOMAIN_TYPE,
-  DOMAIN_TLD,
   DOMAIN_TLDS
 } from "../../../configuration/Config";
 import HomeButton from "../../../components/HomeButton"; // Home Button

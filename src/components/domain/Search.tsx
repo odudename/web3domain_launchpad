@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Input, Box, TableContainer, Table, Tbody, Tr, Td, Divider } from '@chakra-ui/react';
 import { CheckDomain } from '../CheckDomain';
-import { DOMAIN_TLD, DOMAIN_PLACEHOLDER, DOMAIN_TLDS } from '../../configuration/Config'
+import { DOMAIN_PLACEHOLDER, DOMAIN_TLDS } from '../../configuration/Config'
 import { useDomainValidation } from '../../hooks/validate';
 import useGlobal from '../../hooks/global';
 const Search = () => {

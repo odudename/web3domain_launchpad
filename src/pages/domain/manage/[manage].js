@@ -69,7 +69,6 @@ import {
 } from "react-icons/fa";
 import {
   DOMAIN_IMAGE_URL,
-  DOMAIN_TLD,
   DOMAIN_DESCRIPTION,
   NETWORK_ERROR,
   DOMAIN_TLDS

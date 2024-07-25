@@ -1,7 +1,7 @@
 import { ThemingProps } from '@chakra-ui/react'
 import { polygon} from '@wagmi/chains'
 
-export const SITE_NAME = '.Dude Name'
+export const SITE_NAME = 'ODude Name'
 export const SITE_DESCRIPTION = 'ODude MEME Name Service'
 export const SITE_URL = 'https://www.odude.com/'
 
@@ -20,14 +20,13 @@ export const NETWORKS = [polygon]; //polygon, filecoin, polygonMumbai
 export const NETWORK_ERROR = "Unsupported Blockchain Network or Domain Name !" //Change network name as required
 
 //Domain Information. It only supports single domain name. 
-export const DOMAIN_TLD = 'dude' //primary domain name without dot (.)
 export const DOMAIN_TLDS = ['dude', 'usdc', 'yak']; // Array of TLDs
 export const DOMAIN_IMAGE_URL = 'https://web3domain.org/endpoint/nft/dude.jpg' //Image path starts with ipfs:// or https://
 export const DOMAIN_NETWORK_CHAIN = 137 //137 for polygon, 314 for filecoin, 80001 for mumbai, 11155111 for sepolia
-export const DOMAIN_DESCRIPTION = '.dude MEME Name service by ODude.com'
+export const DOMAIN_DESCRIPTION = 'ODude Name service'
 export const DOMAIN_TYPE = "W3D" //W3D for polygon, FVM for Filecoin net
-export const DOMAIN_TITLE = ".dude" //Title above the search input field. 
-export const DOMAIN_PLACEHOLDER = "Search for a .dude" //Placeholder for search input field 
+export const DOMAIN_TITLE = "Hi Dude!" //Title above the search input field. 
+export const DOMAIN_PLACEHOLDER = "Search for a name" //Placeholder for search input field 
 
 //Admin wallet address of TLD mentioned at DOMAIN_TLD
 export const ADMIN_WALLET = "0xbed79816b54E75eD54BF217333342C8d271b3b6f" //ETH wallet address 

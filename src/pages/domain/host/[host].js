@@ -60,7 +60,7 @@ import {
 } from "@chakra-ui/react";
 import { FaExternalLinkAlt, FaForward, FaLink } from "react-icons/fa";
 import { useAccount } from "wagmi";
-import { DOMAIN_TLD, NETWORK_ERROR, DOMAIN_IMAGE_URL, DOMAIN_TLDS } from "../../../configuration/Config";
+import { NETWORK_ERROR, DOMAIN_IMAGE_URL, DOMAIN_TLDS } from "../../../configuration/Config";
 
 export default function Info() {
   const { address } = useAccount();

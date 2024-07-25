@@ -40,7 +40,7 @@ import {
   Divider
 } from '@chakra-ui/react'
 import { useAccount } from "wagmi";
-import { NETWORK_ERROR,DOMAIN_TYPE,DOMAIN_TLD,DOMAIN_TLDS} from '../../../configuration/Config'
+import { NETWORK_ERROR,DOMAIN_TYPE,DOMAIN_TLDS} from '../../../configuration/Config'
 
 
 export default function Info() {

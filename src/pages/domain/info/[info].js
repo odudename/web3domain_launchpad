@@ -31,7 +31,7 @@ import {
 } from "@chakra-ui/react";
 import { FaCopy, FaExternalLinkAlt } from "react-icons/fa";
 import { useAccount } from "wagmi";
-import { DOMAIN_TLD, DOMAIN_DESCRIPTION, DOMAIN_IMAGE_URL, DOMAIN_TLDS } from "../../../configuration/Config";
+import { DOMAIN_DESCRIPTION, DOMAIN_IMAGE_URL, DOMAIN_TLDS } from "../../../configuration/Config";
 import {
   Modal,
   ModalOverlay,

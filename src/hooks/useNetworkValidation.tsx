@@ -1,5 +1,5 @@
 import { useAccount, useNetwork } from "wagmi";
-import { DOMAIN_TLD, DOMAIN_NETWORK_CHAIN } from '../configuration/Config'
+import { DOMAIN_NETWORK_CHAIN } from '../configuration/Config'
 
 function useNetworkValidation() {
   const { isConnected } = useAccount();
